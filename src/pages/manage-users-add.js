@@ -5,6 +5,7 @@ export default function ManageUsersAdd() {
     const navigate = useNavigate();
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
+    const [role, setRole] = useState("");
 
     const submitForm = () => {
         // 1. get the existing posts from the local storage
@@ -20,7 +21,7 @@ export default function ManageUsersAdd() {
           id: Math.floor(Math.random() * 100000), // get random id
           name: name, // pass in the value from the title
           email: email, // pass in the value from the content
-          role: "user", // set the status to "review" as default value
+          role: role, // set the status to "review" as default value
         });
     
         // 4. save array into local storage
@@ -71,7 +72,13 @@ export default function ManageUsersAdd() {
           </div>
           <div className="mb-3">
             <label for="role" className="form-label">Role</label>
-            <select className="form-control" id="role">
+            <select className="form-control"
+              id="user-role"
+              value={role}
+              onChange={(event) => {
+                setRole(event.target.value);
+              }}
+            >
               <option value="">Select an option</option>
               <option value="user">User</option>
               <option value="editor">Editor</option>
